@@ -5,12 +5,12 @@ A real-time chat application built with Next.js, TypeScript, and Tailwind CSS. T
 
 https://github.com/user-attachments/assets/9f021d50-8c40-4312-b82d-79554b4479c6
 
+Preview Link: https://chat-h48rfbbcw-sanskarjain7s-projects.vercel.app
 ## Features
 
 - Create new chats
 - Switch between different chats
 - Real-time message updates
-- Responsive design
 - Mock API integration for testing
 - Delete chats
 - Auto-scrolling messages
