@@ -3,12 +3,11 @@ import { Message, Chat } from './types';
 import MessageComponent from './Message';
 
 interface ChatWindowProps {
-    chatId: string;
     chat: Chat;
-    onUpdateMessages: (messages: Message[]) => void;
+    onUpdateMessages: (messages: Message) => void;
 }
 
-export default function ChatWindow({ chatId, chat, onUpdateMessages }: ChatWindowProps) {
+export default function ChatWindow({ chat, onUpdateMessages }: ChatWindowProps) {
     const [newMessage, setNewMessage] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +29,7 @@ export default function ChatWindow({ chatId, chat, onUpdateMessages }: ChatWindo
                 senderId: 'current-user',
                 senderName: 'You'
             };
-            onUpdateMessages([...chat.messages, message]);
+            onUpdateMessages(message);
             setNewMessage('');
         }
     };

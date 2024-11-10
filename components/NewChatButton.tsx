@@ -38,7 +38,7 @@ export default function NewChatButton({ onCreateChat }: NewChatButtonProps) {
             ) : (
                 <button
                     onClick={() => setIsCreating(true)}
-                    className="w-full px-4 py-2 bg-orange-500 text-black rounded-lg hover:bg-orange-600"
+                    className="w-full px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
                 >
                     New Chat
                 </button>

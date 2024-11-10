@@ -20,20 +20,31 @@ export default function Home() {
     loadChats();
   }, []);
 
-  // Simulate receiving messages when a message is sent
-  const handleUpdateMessages = async (chatId: string, messages: Message[]) => {
-    setChats(chats.map(chat =>
+  const handleUpdateMessages = async (chatId: string, newMessage: Message) => {
+    setChats(prevChats => prevChats.map(chat =>
       chat.id === chatId
-        ? { ...chat, messages, lastMessage: messages[messages.length - 1] }
+        ? {
+          ...chat,
+          messages: [...chat.messages, newMessage],
+        }
         : chat
     ));
 
     try {
-      const response = await mockApi.receiveMessage(chatId);
-      const updatedMessages = [...messages, response];
-      setChats(chats.map(chat =>
+      const response = await mockApi.receiveMessage();
+      const currentChat = chats.find(chat => chat.id === chatId);
+      if (!currentChat) return;
+      const botResponse = {
+        ...response,
+        senderName: currentChat.name
+      };
+
+      setChats(prevChats => prevChats.map(chat =>
         chat.id === chatId
-          ? { ...chat, messages: updatedMessages, lastMessage: response }
+          ? {
+            ...chat,
+            messages: [...chat.messages, botResponse],
+          }
           : chat
       ));
     } catch (error) {
@@ -67,7 +78,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen">
-      <div className="w-[300px] border-r border-red-200 dark:border-red-800 p-4">
+      <div className="w-[300px] border-r border-red-200 p-4 overflow-y-auto h-screen">
         <NewChatButton onCreateChat={handleCreateChat} />
         <ChatList
           chats={chats}
@@ -76,12 +87,11 @@ export default function Home() {
           onDeleteChat={handleDeleteChat}
         />
       </div>
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col h-screen overflow-y-auto">
         {selectedChat ? (
           <ChatWindow
-            chatId={selectedChat}
             chat={chats.find(c => c.id === selectedChat)!}
-            onUpdateMessages={(messages) => handleUpdateMessages(selectedChat, messages)}
+            onUpdateMessages={(newMessage) => handleUpdateMessages(selectedChat, newMessage)}
           />
         ) : (
           <div className="flex items-center justify-center h-full text-white-500">

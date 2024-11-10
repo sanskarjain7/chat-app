@@ -11,8 +11,8 @@ export default function MessageComponent({ message }: MessageProps) {
         <div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
             <div
                 className={`max-w-[70%] rounded-lg p-3 ${isCurrentUser
-                    ? 'bg-red-500 text-white'
-                    : 'bg-red-100 dark:bg-red-800'
+                    ? 'bg-red-500 text-white' // Cool indigo for current user - complements orange
+                    : ' bg-slate-800 text-slate-100' // Neutral slate for others
                     }`}
             >
                 <div className="flex items-baseline gap-2">

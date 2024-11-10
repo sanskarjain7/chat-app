@@ -4,27 +4,55 @@ import { Chat, Message } from '@/components/types';
 const INITIAL_CHATS: Chat[] = [
     {
         id: '1',
-        name: 'General Chat',
+        name: 'John Doe',
         messages: [
             {
                 id: '1',
                 content: 'Welcome to the general chat!',
                 timestamp: new Date('2024-03-10T10:00:00'),
-                senderId: 'system',
-                senderName: 'System'
+                senderId: 'user1',
+                senderName: 'John Doe'
+            },
+            {
+                id: '2',
+                content: 'Hi everyone! Excited to be here!',
+                timestamp: new Date('2024-03-10T10:05:00'),
+                senderId: 'user1',
+                senderName: 'John Doe'
+            },
+            {
+                id: '3',
+                content: 'Hello John! Welcome to the chat.',
+                timestamp: new Date('2024-03-10T10:07:00'),
+                senderId: 'user1',
+                senderName: 'John Doe'
+            },
+            {
+                id: '4',
+                content: 'Hey there! I am new here too.',
+                timestamp: new Date('2024-03-10T10:08:00'),
+                senderId: 'current-user',
+                senderName: 'You'
+            },
+            {
+                id: '5',
+                content: 'How is everyone doing today?',
+                timestamp: new Date('2024-03-10T10:10:00'),
+                senderId: 'user1',
+                senderName: 'John Doe'
+            },
+            {
+                id: '6',
+                content: 'Doing great! Looking forward to our discussions.',
+                timestamp: new Date('2024-03-10T10:11:00'),
+                senderId: 'current-user',
+                senderName: 'You'
             }
-        ],
-        lastMessage: {
-            id: '1',
-            content: 'Welcome to the general chat!',
-            timestamp: new Date('2024-03-10T10:00:00'),
-            senderId: 'system',
-            senderName: 'System'
-        }
+        ]
     },
     {
         id: '2',
-        name: 'Random Topics',
+        name: 'Jane Doe',
         messages: [],
     }
 ];
@@ -49,8 +77,8 @@ export const mockApi = {
     },
 
     // Simulate receiving a message
-    receiveMessage: async (chatId: string): Promise<Message> => {
-        await delay(1000 + Math.random() * 2000); // Random delay between 1-3 seconds
+    receiveMessage: async (): Promise<Message> => {
+        await delay(1000 + Math.random() * 1000); // Random delay between 1-2 seconds
 
         return {
             id: Date.now().toString(),
