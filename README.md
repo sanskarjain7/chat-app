@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/9f021d50-8c40-4312-b82d-79554b4479c6
+
 # Next.js Chat Application
 
 A real-time chat application built with Next.js, TypeScript, and Tailwind CSS. This application demonstrates a simple chat interface with multiple chat rooms and mock API responses.
