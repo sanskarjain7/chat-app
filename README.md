@@ -13,6 +13,7 @@ Preview Link: https://chat-h48rfbbcw-sanskarjain7s-projects.vercel.app
 - Real-time message updates
 - Mock API integration for testing
 - Delete chats
+- Delete messages
 - Auto-scrolling messages
 - User-friendly interface
 
