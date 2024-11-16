@@ -67,6 +67,12 @@ export default function Home() {
       setSelectedChat(null);
     }
   };
+  const onDeleteMessage = (messageId: string) => {
+    setChats(prevChats => prevChats.map(chat => ({
+      ...chat,
+      messages: chat.messages.filter(message => message.id !== messageId)
+    })));
+  }
 
   if (isLoading) {
     return (
@@ -92,6 +98,7 @@ export default function Home() {
           <ChatWindow
             chat={chats.find(c => c.id === selectedChat)!}
             onUpdateMessages={(newMessage) => handleUpdateMessages(selectedChat, newMessage)}
+            onDeleteMessage={onDeleteMessage}
           />
         ) : (
           <div className="flex items-center justify-center h-full text-white-500">

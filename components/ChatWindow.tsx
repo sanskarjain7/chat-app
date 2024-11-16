@@ -5,9 +5,10 @@ import MessageComponent from './Message';
 interface ChatWindowProps {
     chat: Chat;
     onUpdateMessages: (messages: Message) => void;
+    onDeleteMessage: (messageId: string) => void;
 }
 
-export default function ChatWindow({ chat, onUpdateMessages }: ChatWindowProps) {
+export default function ChatWindow({ chat, onUpdateMessages, onDeleteMessage }: ChatWindowProps) {
     const [newMessage, setNewMessage] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +39,7 @@ export default function ChatWindow({ chat, onUpdateMessages }: ChatWindowProps) 
         <div className="flex flex-col h-full">
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {chat.messages.map((message) => (
-                    <MessageComponent key={message.id} message={message} />
+                    <MessageComponent key={message.id} message={message} onDeleteMessage={onDeleteMessage} />
                 ))}
                 <div ref={messagesEndRef} />
             </div>
